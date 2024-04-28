@@ -17,6 +17,7 @@ python-multipart = "*"
 langchain-community = "*"
 langchain = "*"
 transformers = "*"
+torch = "*"
 
 [dev-packages]
 
