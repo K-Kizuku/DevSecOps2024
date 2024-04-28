@@ -51,7 +51,6 @@ function Home() {
       </div>
 
       <div className={styles.outputContainer}>
-        <h2 className={styles.headingL}>出力欄</h2>
         <p className={styles.headingM}>ベクトル検索の結果</p>
         
         <div className={styles.text}>{vector}</div>

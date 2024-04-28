@@ -23,7 +23,7 @@
 .inputtext {
   display: flex; /* フレックスレイアウト */
   justify-content: center; /* 中央揃え */
-  margin-bottom: 20px; /* 下部マージン */
+  /*margin-bottom: 20px; *//* 下部マージン */
 }
 
 .inputtext input {
