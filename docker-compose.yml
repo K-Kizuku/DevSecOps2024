@@ -1,0 +1,26 @@
+services:
+  ubuntu:
+    build:
+      context: .
+      dockerfile: /home/teamB/ubuntu/Dockerfile
+    # container_nameは命名規則に従ってください。"/"はエラーになるため使用不可。大文字可。
+    container_name: teamB_ubuntu
+    hostname: base
+    stdin_open: true
+    #
+    # volumeアタッチする場合
+    #volumes:
+    #  - /home/teamB/xxx:/xxx
+    #  
+    # ポートフォワードする場合
+    #ports:
+    #  - '49300:80'
+    #  - '49301:443'
+    # GPUをコンテナで利用する場合は以下を設定してください。おまじない。
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
