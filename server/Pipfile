@@ -9,6 +9,14 @@ sqlalchemy = "*"
 python-dotenv = "*"
 install = "*"
 bcrypt = "*"
+pyjwt = "*"
+python-jose = "*"
+uvicorn = "*"
+psycopg2 = "*"
+python-multipart = "*"
+langchain-community = "*"
+langchain = "*"
+transformers = "*"
 
 [dev-packages]
 

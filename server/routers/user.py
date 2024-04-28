@@ -16,3 +16,7 @@ def register_user(payload: RegisterUserPayload, db: Session = Depends(get_db), c
 @user_router.get("/is_admin", response_model=bool)
 def is_admin(current_user: User = Depends(get_current_user)):
     return current_user.role == "admin"
+
+@user_router.get("/hello", response_model=str)
+def hello():
+    return "hello"
