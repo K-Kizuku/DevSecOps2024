@@ -55,12 +55,3 @@ def register_auth_number(db:Session,auth_number:str,email:str):
     db.commit()
     return True
 
-def secondary_authentication(db:Session,code:str,email:str):
-    user = db.query(User).filter(User.email == email).first()
-    if user is None:
-        raise HTTPException(status_code=404, detail="User not found")
-    user_input_hash = gen_password_hash(code)
-    if user_input_hash != user.auth_hash_num:
-        raise HTTPException(status_code=403, detail="authentication number is incorrect")
-    return True
-

@@ -6,7 +6,7 @@ from email.utils import formatdate
 from random import randint
 
 from fastapi import Depends, HTTPException, Security
-from fastapi.security import HTTPBearer, OAuth2PasswordBearer
+from fastapi.security import HTTPBearer
 from fastapi.security.http import HTTPAuthorizationCredentials
 from jose import jwt
 from sqlalchemy.orm.session import Session
@@ -24,7 +24,7 @@ security = HTTPBearer()
 def create_one_time_tokens(db: Session, user_id: str, role: str):
     access_payload = {
         'token_type': 'access_token',
-        'exp': datetime.utcnow() + timedelta(minutes=60),
+        'exp': datetime.now(datetime.timezone.utc) + timedelta(minutes=60),
         'user_id': user_id,
         'role': role
     }
