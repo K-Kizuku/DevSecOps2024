@@ -18,6 +18,10 @@ langchain-community = "*"
 langchain = "*"
 transformers = "*"
 torch = "*"
+openai = "==0.28.1"
+chromadb = "==0.4.15"
+tiktoken = "==0.5.1"
+cohere = "*"
 
 [dev-packages]
 
