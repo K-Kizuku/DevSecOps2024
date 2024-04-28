@@ -1,0 +1,17 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+langchain = "*"
+openai = "==0.28.1"
+tiktoken = "==0.5.1"
+cohere = "*"
+chromadb = "==0.4.15"
+langchain-community = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.10"
