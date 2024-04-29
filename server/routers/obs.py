@@ -31,11 +31,15 @@ async def websocket_endpoint(ws: WebSocket, pid: int = 0):
     try:
         while True:
             message_data = get_gpu_info()
-
+            # pidによるフィルタリング
+            query = []
+            for d in message_data:
+                if(int(d['pid']) == pid):
+                    query += [d['vram']] 
             # 全クライアントにメッセージを送信
             json_data = {
                 "key": key,
-                "message_data": message_data,
+                "vram_usage": query,
             }
             for client in clients.values():
                 await client.send_text(json.dumps(json_data))
