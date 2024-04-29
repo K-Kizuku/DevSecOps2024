@@ -2,6 +2,23 @@ from fastapi import APIRouter, Depends, HTTPException,  FastAPI, Response
 from fastapi.responses import StreamingResponse
 
 import asyncio
+
+import requests
+from torchvision.io import read_image
+from torchvision.models import resnet50, ResNet50_Weights
+import os
+
+def getCategoryName(path):
+    img = read_image(path)
+    weights = ResNet50_Weights.DEFAULT
+    model = resnet50(weights=weights)
+    model.eval()
+    preprocess = weights.transforms()
+    batch = preprocess(img).unsqueeze(0)
+    prediction = model(batch).squeeze(0).softmax(0)
+    cid = prediction.argmax().item()
+    return category_name = weights.meta["categories"][cid]
+
 chat_router = APIRouter()
 
 async def generate_output_stream(prompt: str):
@@ -28,3 +45,5 @@ async def stream_output(response:StreamingResponse):
 
     # async for chunk in send_output(prompt):
     #     yield chunk
+
+
