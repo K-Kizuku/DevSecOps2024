@@ -45,5 +45,12 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
 volumes:
   teamB_db_data: null
