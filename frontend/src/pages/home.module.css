@@ -1,0 +1,40 @@
+.wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.title {
+  width: 100%;
+}
+
+.inputContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.outputContainer {
+  width: 100%;
+  height: 100%;
+}
+
+.headingL {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.headingM {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.headingS {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.text {
+  font-size: 1rem;
+}
+
+.sendButton {
+}
