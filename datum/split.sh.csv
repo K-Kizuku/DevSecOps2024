@@ -1,0 +1,6 @@
+#!/usr/bin/bash
+
+for f in "$1"*
+do
+    mv -- "$f" "${f}.csv"
+done
