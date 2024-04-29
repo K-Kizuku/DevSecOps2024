@@ -22,6 +22,8 @@ openai = "==0.28.1"
 chromadb = "==0.4.15"
 tiktoken = "==0.5.1"
 cohere = "*"
+llama-index = "*"
+llama-cpp-python = "*"
 
 [dev-packages]
 

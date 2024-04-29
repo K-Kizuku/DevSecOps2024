@@ -21,7 +21,7 @@ async def create_upload_files(files: list[UploadFile] = File(...), current_user:
             # ファイルを保存するための処理（ここでは単に内容を読み取る）
             contents = await file.read()
             # ファイルをカレントディレクトリに保存
-            with open(os.path.join(UPLOAD_DIR,"/file",file.filename), "wb+") as f:
+            with open(os.path.join("/opt/data/train/",file.filename), "xb") as f:
                 f.write(contents)
             
         else:
@@ -44,6 +44,13 @@ async def upload_images(file: UploadFile = File(...)):
         raise HTTPException(status_code=400, detail=f"Unsupported file type: {file.filename}")
     return {"url": f"{filename}"}
 
+# /opt/data/train/にあるファイルのリストを返す
+@file_router.get("/list")
+async def list_files():
+    files = os.listdir("/opt/data/train/")
+    return {"files": files}
+
+
 
 @file_router.get("/f/i/{filename:path}")
 async def download_file(filename: str):
@@ -52,5 +59,13 @@ async def download_file(filename: str):
         raise HTTPException(status_code=404, detail="File not found")
     # ファイルをダウンロード
     return FileResponse(path=os.path.join("/opt/data/images/", filename), filename=filename)
+
+@file_router.get("/download/{filename:path}")
+async def download_file(filename: str):
+    # ファイルの存在チェック
+    if not os.path.exists(os.path.join("/opt/data/train/", filename)):
+        raise HTTPException(status_code=404, detail="File not found")
+    # ファイルをダウンロード
+    return FileResponse(path=os.path.join("/opt/data/train/", filename), filename=filename)
 
 
