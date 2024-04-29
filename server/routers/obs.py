@@ -8,16 +8,22 @@ import subprocess
 import asyncio
 obs_router = APIRouter()
 
-def get_gpu_info(nvidia_smi_path='nvidia-smi', keys=DEFAULT_ATTRIBUTES, no_units=True):
+DEFAULT_ATTRIBUTES = (
+    'pid',
+    'name',
+    'vram',
+)
+
+def get_gpu_info(nvidia_smi_path='nvidia-smi', no_units=True):
     cmd = 'nvidia-smi   --query-compute-apps=pid,process_name,used_memory --format=csv,noheader'
     output = subprocess.check_output(cmd, shell=True)
     lines = output.decode().split('\n')
     lines = [ line.strip() for line in lines if line.strip() != '' ]
 
-    return [ { k: v for k, v in zip(keys, line.split(', ')) } for line in lines ]
+    return [ { k: v for k, v in zip(DEFAULT_ATTRIBUTES, line.split(', ')) } for line in lines ]
 
 @obs_router.get("/obs", response_model=str)
-async def websocket_endpoint(ws: WebSocket):
+async def websocket_endpoint(ws: WebSocket, pid: int = 0):
     await ws.accept()
     key = ws.headers.get('sec-websocket-key')
     clients[key] = ws
