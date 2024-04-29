@@ -9,7 +9,6 @@ class Role(str, Enum):
 
 class User(BaseModel):
     id: str
-    municipality: str
     email: str
     role: Role
 
@@ -23,7 +22,3 @@ class LoginUserPayload(BaseModel):
 class RegisterUserPayload(BaseModel):
     email: str
     password: str
-    municipality: str
-
-class SecondaryAuthUserPayload(BaseModel):
-    code:str
